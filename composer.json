@@ -1,0 +1,22 @@
+{
+    "name": "skeeks/skeeks-brand",
+    "description": "Shared SkeekS brand layer: product registry, product switcher, scroll reveal, logos and favicons",
+    "keywords": ["yii2", "skeeks", "brand"],
+    "homepage": "https://skeeks.com/",
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Semenov Alexander",
+            "email": "semenov@skeeks.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "skeeks\\brand\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "product": "skeeks",
+    "label": "SkeekS",
+    "variant": "on-dark",
+    "accent": null,
+    "width": 292.31,
+    "height": 116
+  },
+  {
+    "product": "skeeks",
+    "label": "SkeekS",
+    "variant": "on-light",
+    "accent": null,
+    "width": 292.31,
+    "height": 116
+  },
+  {
+    "product": "platform",
+    "label": "SkeekS Платформа",
+    "variant": "on-dark",
+    "accent": "#a6de58",
+    "width": 446.84,
+    "height": 116
+  },
+  {
+    "product": "platform",
+    "label": "SkeekS Платформа",
+    "variant": "on-light",
+    "accent": "#a6de58",
+    "width": 446.84,
+    "height": 116
+  },
+  {
+    "product": "goods",
+    "label": "SkeekS Товары",
+    "variant": "on-dark",
+    "accent": "#efd740",
+    "width": 337.51,
+    "height": 116
+  },
+  {
+    "product": "goods",
+    "label": "SkeekS Товары",
+    "variant": "on-light",
+    "accent": "#efd740",
+    "width": 337.51,
+    "height": 116
+  },
+  {
+    "product": "ai",
+    "label": "SkeekS AI",
+    "variant": "on-dark",
+    "accent": "#64dcdb",
+    "width": 274.16,
+    "height": 116
+  },
+  {
+    "product": "ai",
+    "label": "SkeekS AI",
+    "variant": "on-light",
+    "accent": "#64dcdb",
+    "width": 274.16,
+    "height": 116
+  }
+]

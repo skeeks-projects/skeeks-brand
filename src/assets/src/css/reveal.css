@@ -1,0 +1,8 @@
+/* Blocks with data-sx-reveal rise in once on screen. Hidden only after reveal.js
+   marks <html> with sx-reveal-ready, so content is visible without JS.
+   Stagger a row with style="--sx-reveal-delay:.1s". */
+.sx-reveal-ready [data-sx-reveal] { opacity:0; translate:0 2.5rem; transition:opacity .9s ease,translate .9s cubic-bezier(.2,.7,.2,1); transition-delay:var(--sx-reveal-delay,0s); }
+.sx-reveal-ready [data-sx-reveal].is-revealed { opacity:1; translate:0 0; }
+@media (prefers-reduced-motion:reduce) {
+    .sx-reveal-ready [data-sx-reveal] { opacity:1; translate:none; transition:none; }
+}

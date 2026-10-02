@@ -1,0 +1,29 @@
+/* SkeekS product switcher. Reference look: skeeks-platform.ru header. */
+.sx-product-switcher { --sx-switcher-accent:#efd740; --sx-switcher-muted:#b3bfce; --sx-switcher-bg:#171e28; --sx-switcher-offset:1.3rem;
+    position:relative; display:flex; align-items:center; gap:.45rem; margin-right:auto; flex:0 0 auto; }
+.sx-product-switcher > a { margin-right:0; }
+.sx-product-switcher__toggle { width:2.2rem; height:2.6rem; display:grid; place-items:center; padding:0; border:1px solid transparent; border-radius:.7rem; background:transparent; color:#c2c9d2; cursor:pointer; font-size:.8rem; }
+.sx-product-switcher__toggle i { transition:transform .2s ease; }
+.sx-product-switcher__toggle:hover,.sx-product-switcher__toggle[aria-expanded="true"] { color:var(--sx-switcher-accent); border-color:#efd74040; background:#ffffff08; }
+.sx-product-switcher__toggle[aria-expanded="true"] i { transform:rotate(180deg); }
+.sx-product-switcher__panel { position:absolute; top:calc(100% + var(--sx-switcher-offset)); left:0; z-index:5; width:27rem; max-width:calc(100vw - 2rem); max-height:calc(100vh - 8rem); max-height:calc(100dvh - 8rem); overflow-y:auto; overscroll-behavior:contain; padding:1rem; border:1px solid #ffffff26; border-radius:1rem; background:var(--sx-switcher-bg); box-shadow:0 1.3rem 3rem #0007; }
+.sx-product-switcher__panel[hidden] { display:none; }
+.sx-product-switcher__panel>p { margin:.3rem .7rem .7rem; color:#adb8c5; font-size:.9rem; }
+.sx-product-switcher__panel>a,.sx-product-switcher__soon { display:flex; align-items:center; gap:1rem; padding:1rem .7rem; border-radius:.65rem; color:#fff; text-decoration:none; }
+.sx-product-switcher__panel>a:hover { background:#ffffff09; color:var(--sx-switcher-accent); text-decoration:none; }
+.sx-product-switcher__panel>a[aria-current] { background:#efd74009; }
+.sx-product-switcher__panel strong { display:block; font-size:1.1rem; font-weight:800; }
+.sx-product-switcher__panel small { display:block; margin-top:.2rem; color:var(--sx-switcher-muted); font-size:.9rem; line-height:1.45; }
+.sx-product-switcher__panel>a>i,.sx-product-switcher__soon>i { width:1.4rem; flex:0 0 1.4rem; color:var(--sx-switcher-accent); font-size:1.2rem; text-align:center; }
+.sx-product-switcher__panel>a>span:nth-child(2),.sx-product-switcher__soon>span { flex:1; min-width:0; }
+.sx-product-switcher__current { color:var(--sx-switcher-accent); }
+.sx-product-switcher__soon { color:var(--sx-switcher-muted); }
+.sx-product-switcher__soon>i { color:#f478a0; }
+/* Click focus stays quiet; keyboard focus remains visible. */
+.sx-product-switcher__toggle:focus-visible,.sx-product-switcher__panel>a:focus-visible { outline:2px solid var(--sx-switcher-accent); outline-offset:4px; }
+html[data-sx-input="pointer"] .sx-product-switcher__toggle:focus,html[data-sx-input="pointer"] .sx-product-switcher__panel>a:focus { outline:none; }
+@media (max-width:575px) {
+    .sx-product-switcher { position:static; gap:.15rem; min-width:0; }
+    .sx-product-switcher__toggle { width:2rem; }
+    .sx-product-switcher__panel { top:100%; left:1rem; width:calc(100vw - 2rem); }
+}
