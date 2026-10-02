@@ -9,10 +9,46 @@
 | Часть | Что это | Как подключать |
 | --- | --- | --- |
 | `skeeks\brand\Products` | Реестр продуктов: название, подпись, URL, иконка, акцент | Читается виджетами; правки — `params['skeeksBrand']['products']` |
-| `skeeks\brand\widgets\ProductSwitcher` | Логотип + стрелка «Выбрать продукт SkeekS» | В шапке сайта, сам регистрирует свой ассет |
+| `skeeks\brand\widgets\SiteHeader` | Оболочка: шапка, поиск, выдвижное меню, знак продукта | Вместо своей шапки сайта, регистрирует `ShellAsset` |
+| `skeeks\brand\widgets\ProductSwitcher` | Логотип + стрелка «Выбрать продукт SkeekS» | Внутри `SiteHeader` или отдельно, сам регистрирует свой ассет |
 | `skeeks\brand\assets\RevealAsset` | Плавное появление `[data-sx-reveal]` | Только на страницах, где есть такие блоки |
 | `brand/favicons` | Favicon продуктов и генератор | См. `brand/favicons/README.md` |
 | `brand/logos` | Логотипы продуктов и генераторы | См. `brand/logos/README.md` |
+
+## Шапка сайта (оболочка)
+
+```php
+use skeeks\brand\widgets\SiteHeader;
+
+echo SiteHeader::widget([
+    'product'      => 'platform',
+    'brand'        => Html::a($logo, Url::home(), ['class' => 'sx-site-header__logo']),
+    'drawerBrand'  => Html::a($logo, Url::home(), ['class' => 'sx-full-menu__logo']),
+    'menu'         => [['/features', 'Возможности'], ['/blog', 'Блог']],
+    'drawerGroups' => ['Раздел' => [['/features', 'Возможности', 'fas fa-th-large']]],
+    'search'       => ['action' => ['/cmsSearch/result/index'], 'param' => 'q', 'value' => ''], // null — без поиска
+    'cabinetUrl'   => 'https://skeeks.com/~login',
+    'cabinetLabel' => 'Личный кабинет SkeekS',
+    'cta'          => ['label' => 'Начать использовать', 'url' => '/start', 'options' => []],
+    'drawerCta'    => true,  // повторить CTA в меню
+    'contacts'     => [['url' => 'tel:+7…', 'icon' => 'fas fa-phone', 'label' => '+7 …']],
+    'socials'      => [['url' => 'https://…', 'icon' => 'fab fa-vk', 'label' => 'ВКонтакте']],
+]);
+```
+
+- Сайт передаёт только данные; разметка, стили (`shell.css`, ~11 КБ) и поведение
+  (`shell.js`, ~5 КБ) — в пакете. Знак продукта «лампочка + skeeks + название» —
+  классы `sx-product-brand*` (см. шапку skeeks-platform.ru).
+- Поведение: меню — диалог с ловушкой фокуса, `inert` для фона (кроме контейнера, в
+  котором лежит само меню), Escape и возврат фокуса; поиск закрывается кликом снаружи;
+  шапка прячется при прокрутке вниз (на ≤991px — никогда). Переключатель, поиск и меню
+  взаимно закрывают друг друга. `window.sxShell.closeAll()` — закрыть всё (например,
+  перед своим модальным окном).
+- Токены (`--sx-pink`, `--sx-gold`, `--sx-line`, `--sx-muted`, `--px120`, высоты шапки)
+  объявлены через `:where(:root)`: значения сайта в его `:root` всегда главнее.
+  Отступ под фиксированной шапкой на мобильных — `--sx-header-spacer-mobile`
+  (по умолчанию высота шапки; skeeks.com задаёт `0`).
+- Шрифт и Font Awesome подключает сайт. Подвал и плашка cookie пока остаются в сайтах.
 
 ## Переключатель продуктов
 
