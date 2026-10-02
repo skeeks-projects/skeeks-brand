@@ -10,6 +10,7 @@
 | --- | --- | --- |
 | `skeeks\brand\Products` | Реестр продуктов: название, подпись, URL, иконка, акцент | Читается виджетами; правки — `params['skeeksBrand']['products']` |
 | `skeeks\brand\widgets\SiteHeader` | Оболочка: шапка, поиск, выдвижное меню, знак продукта | Вместо своей шапки сайта, регистрирует `ShellAsset` |
+| `skeeks\brand\widgets\SiteFooter` | Подвал: призыв, навигация, соцсети, юридическая строка; вид плашки cookie | Вместо своего подвала, регистрирует `FooterAsset` (только CSS) |
 | `skeeks\brand\widgets\ProductSwitcher` | Логотип + стрелка «Выбрать продукт SkeekS» | Внутри `SiteHeader` или отдельно, сам регистрирует свой ассет |
 | `skeeks\brand\assets\RevealAsset` | Плавное появление `[data-sx-reveal]` | Только на страницах, где есть такие блоки |
 | `brand/favicons` | Favicon продуктов и генератор | См. `brand/favicons/README.md` |
@@ -48,7 +49,34 @@ echo SiteHeader::widget([
   объявлены через `:where(:root)`: значения сайта в его `:root` всегда главнее.
   Отступ под фиксированной шапкой на мобильных — `--sx-header-spacer-mobile`
   (по умолчанию высота шапки; skeeks.com задаёт `0`).
-- Шрифт и Font Awesome подключает сайт. Подвал и плашка cookie пока остаются в сайтах.
+- Шрифт и Font Awesome подключает сайт.
+
+## Подвал сайта
+
+```php
+use skeeks\brand\widgets\SiteFooter;
+
+echo SiteFooter::widget([
+    'eyebrow'  => 'Начнём с вашего проекта',
+    'title'    => 'Есть задача?<br>Давайте обсудим',   // доверенный HTML
+    'text'     => 'Расскажите о проекте…',
+    // правая часть призыва: контакты + кнопка…
+    'contacts' => [['url' => 'tel:+7…', 'icon' => 'fas fa-phone', 'label' => '+7 …']],
+    'button'   => ['label' => 'Оставить заявку', 'url' => '#sx-callback', 'options' => ['data-toggle' => 'modal']],
+    // …или одна большая анимированная кнопка вместо них:
+    // 'start' => ['label' => 'Начать использовать', 'url' => '/start'],
+    'logo'     => Html::a(Html::img($logo), Url::home(), ['class' => 'sx-new-footer__logo']),
+    'menu'     => [['/services', 'Услуги'], ['/blog', 'Блог']],
+    'socials'  => [['url' => 'https://t.me/…', 'icon' => 'fab fa-telegram-plane', 'label' => 'Telegram']],
+    // 'copyright', 'legalLinks' — по умолчанию © SkeekS и две юридические страницы CMS
+]);
+```
+
+- `footer.css` (~8 КБ) содержит и вид плашки cookie: её разметку выводит
+  `LegalComponent` из `skeeks/cms`, пакет только перекрашивает (поэтому `!important`).
+  Если подвал на странице не выводится (например, режим мобильного приложения), а
+  плашка нужна в фирменном виде — зарегистрировать `FooterAsset` вручную.
+- Цвет юридической строки — переменная `--sx-footer-legal-color` (по умолчанию `--sx-faint`).
 
 ## Переключатель продуктов
 
