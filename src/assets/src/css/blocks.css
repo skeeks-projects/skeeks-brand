@@ -88,6 +88,24 @@
 .sx-faq-list summary::marker { color:#efd740; }
 .sx-faq-list details p { margin:1rem 0 0; color:rgba(255,255,255,.72); font-size:1.1rem; max-width:65ch; }
 
+/* Plans: tariff cards with a price, a short note, a feature list and an action.
+   <div class="sx-plans"><div class="sx-plan [sx-plan--accent]" data-sx-tone="cyan">
+     <p class="sx-plan__name">…</p><p class="sx-plan__price">99 ₽<small>/мес</small></p>
+     <p class="sx-plan__note">…</p><ul class="sx-plan__list"><li>…</li></ul>
+     <a class="sx-btn" href="…">…</a></div></div>
+   The card with --accent is outlined and lit; columns fit --sx-plan-min (17rem). */
+.sx-plans { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--sx-plan-min,17rem)),1fr)); gap:1.2rem; align-items:stretch; }
+.sx-plan { position:relative; display:flex; flex-direction:column; padding:1.8rem; border:1px solid rgba(255,255,255,.08); border-radius:20px; background:linear-gradient(160deg,rgba(var(--sx-tone-rgb),.08),rgba(255,255,255,.01) 60%); overflow:hidden; }
+.sx-plan--accent { border-color:rgba(var(--sx-tone-rgb),.55); box-shadow:0 0 40px rgba(var(--sx-tone-rgb),.16); }
+.sx-plan__name { margin:0; color:var(--sx-tone); font-size:1.05rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase; }
+.sx-plan__price { margin:.8rem 0 0; font-size:2.6rem; font-weight:900; line-height:1.1; }
+.sx-plan__price small { margin-left:.25rem; color:rgba(255,255,255,.6); font-size:1rem; font-weight:700; }
+.sx-plan__note { margin:.6rem 0 0; color:rgba(255,255,255,.72); font-size:1rem; }
+.sx-plan__list { flex:1; margin:1.4rem 0 1.6rem; padding:0; list-style:none; }
+.sx-plan__list li { padding:.55rem 0 .55rem 1.6rem; border-top:1px solid rgba(255,255,255,.07); position:relative; font-size:1rem; }
+.sx-plan__list li:before { content:'✓'; position:absolute; left:0; color:var(--sx-tone); font-weight:900; }
+.sx-plan .sx-btn,.sx-plan .sx-text-link { align-self:flex-start; }
+
 @media (max-width:1199px) {
     .sx-hero h1 { font-size:3.9rem; }
     .sx-step-list { grid-template-columns:repeat(2,minmax(0,1fr)); }
@@ -118,6 +136,8 @@
     .sx-ask__icon { width:2.9rem; height:2.9rem; font-size:1.1rem; }
     .sx-faq-list details { padding:1.1rem 1.2rem; }
     .sx-faq-list summary { font-size:1.12rem; }
+    .sx-plan { padding:1.4rem; }
+    .sx-plan__price { font-size:2.2rem; }
 }
 @media (prefers-reduced-motion:reduce) {
     .sx-landing *,.sx-landing *:before,.sx-landing *:after { transition:none!important; }

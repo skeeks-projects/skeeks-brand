@@ -155,6 +155,7 @@ echo ProductSwitcher::widget([
 | `sx-band-head`, `sx-band-head--row` | Заголовок секции с абзацем; `--row` — со ссылкой справа |
 | `sx-split`, `sx-points`, `sx-stack` | Текст + визуал; список со стрелками; лесенка панелей (`<div data-sx-tone><strong>…</strong><span>…</span></div>`) |
 | `sx-step-list` | Шаги 01, 02…: `<ol class="sx-step-list"><li><h3>…</h3><p>…</p></li></ol>` |
+| `sx-plans`, `sx-plan` (`--accent`, `__name`, `__price`, `__note`, `__list`) | Тарифы: карточки с ценой, примечанием, списком и кнопкой; ширина колонки — `--sx-plan-min` |
 | `sx-faq`, `sx-faq__aside`, `sx-ask`, `sx-faq-list` | Вопросы и ответы: слева заголовок и карточка «Не нашли ответ?», справа `<details>` |
 | `sx-tiles`, `sx-tile` (`__icon`, `__body`, `__text`, `__points`, `__arrow`) | Карточки-ссылки со свечением; ширина колонки — `--sx-tile-min` |
 
