@@ -1,0 +1,45 @@
+/* CSS 3D scene rendered by the Scene widget: a lit core on a tilted floor with up to six
+   linked nodes. The tone comes from data-sx-tone on the scene and on each node.
+   Animation runs only while scene.js marks the scene data-sx-running="true". */
+.sx-scene { position:relative; margin:0; width:100%; min-width:0; }
+.sx-scene__canvas { position:relative; aspect-ratio:1.12; width:100%; isolation:isolate; perspective:900px; }
+.sx-scene__aura { position:absolute; inset:12%; border-radius:50%; background:radial-gradient(ellipse,rgba(var(--sx-tone-rgb),.16),transparent 68%); pointer-events:none; }
+.sx-scene__connections { position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; }
+.sx-scene__connections path { stroke:var(--sx-tone); stroke-width:.15; opacity:.25; fill:none; }
+.sx-scene__connections path.sx-scene__signal { stroke-width:.38; stroke-dasharray:.6 24; stroke-linecap:round; opacity:.85; animation:sx-scene-data 8s linear infinite; animation-play-state:paused; }
+.sx-scene__world { position:absolute; width:68%; aspect-ratio:1; left:16%; top:21%; transform-style:preserve-3d; transform:rotateX(58deg) rotateZ(-32deg); pointer-events:none; animation:sx-scene-world 16s ease-in-out infinite; animation-play-state:paused; }
+.sx-scene__floor { position:absolute; inset:0; border:1px solid rgba(255,255,255,.13); border-radius:18px; background:linear-gradient(rgba(var(--sx-tone-rgb),.05) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--sx-tone-rgb),.05) 1px,transparent 1px),radial-gradient(ellipse,rgba(var(--sx-tone-rgb),.13),rgba(14,19,26,.3)); background-size:10% 10%,10% 10%,100% 100%; }
+.sx-scene__orbit { position:absolute; inset:7%; border:1px solid rgba(var(--sx-tone-rgb),.42); border-radius:50%; transform:translateZ(5px); }
+.sx-scene__orbit--outer { inset:-8%; border-color:rgba(238,77,125,.24); transform:translateZ(10px); }
+.sx-scene__layer { position:absolute; inset:28%; border:1px solid var(--sx-tone); border-radius:14px; background:linear-gradient(140deg,rgba(var(--sx-tone-rgb),.22),#15201e); box-shadow:6px 10px 25px rgba(0,0,0,.35); }
+.sx-scene__layer--lower { transform:translateZ(16px); opacity:.55; }
+.sx-scene__layer--middle { transform:translateZ(42px); opacity:.8; }
+.sx-scene__layer--top { transform:translateZ(69px); background:linear-gradient(135deg,rgba(var(--sx-tone-rgb),.3),#172521); }
+.sx-scene__core { position:absolute; z-index:2; left:34%; top:36%; width:32%; display:flex; flex-direction:column; align-items:center; text-align:center; color:#fff; pointer-events:none; }
+.sx-scene__core>i { font-size:2.8rem; line-height:1.3; color:var(--sx-tone); margin-bottom:.4rem; filter:drop-shadow(0 4px 12px rgba(var(--sx-tone-rgb),.25)); }
+.sx-scene__core strong { font-size:1.5rem; font-weight:800; line-height:1.15; }
+.sx-scene__core>span { font-size:.85rem; color:#d0dfd1; margin-top:.3rem; }
+.sx-scene__node { position:absolute; z-index:3; left:var(--node-x); top:var(--node-y); transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; gap:.6rem; color:#fff!important; text-align:center; text-decoration:none!important; }
+.sx-scene__node-icon { display:grid; place-items:center; width:4.2rem; height:3.7rem; font-size:1.55rem; color:var(--sx-tone); border:1px solid rgba(var(--sx-tone-rgb),.45); border-radius:12px; background:linear-gradient(135deg,rgba(var(--sx-tone-rgb),.18),#121a1e 70%); box-shadow:4px 6px 0 rgba(var(--sx-tone-rgb),.1),9px 15px 24px rgba(0,0,0,.32); transform:perspective(220px) rotateY(-14deg) rotateX(12deg); transition:transform .25s ease,border-color .25s ease; }
+.sx-scene__node-label { font-size:1rem; font-weight:800; line-height:1.2; background:#10151de8; padding:.4rem .65rem; border-radius:6px; max-width:10rem; }
+a.sx-scene__node:hover { color:#efd740!important; }
+a.sx-scene__node:hover .sx-scene__node-icon { transform:perspective(220px) rotateY(-6deg) rotateX(4deg) translateY(-4px); border-color:#efd740; }
+.sx-scene figcaption { margin-top:.7rem; color:#b4bfc9; font-size:.95rem; text-align:center; }
+.sx-scene[data-sx-running="true"] .sx-scene__world,.sx-scene[data-sx-running="true"] .sx-scene__signal { animation-play-state:running; }
+@keyframes sx-scene-world { 50% { transform:rotateX(53deg) rotateZ(-26deg); } }
+@keyframes sx-scene-data { to { stroke-dashoffset:-49.2; } }
+@media (max-width:991px) { .sx-scene { max-width:36rem; margin:0 auto; } }
+@media (max-width:575px) {
+    .sx-scene__node-icon { width:3.2rem; height:2.8rem; font-size:1.15rem; border-radius:9px; }
+    .sx-scene__node-label { font-size:.82rem; padding:.3rem .45rem; max-width:7.5rem; }
+    .sx-scene__node { gap:.45rem; }
+    .sx-scene__core>i { font-size:2rem; margin-bottom:.3rem; }
+    .sx-scene__core strong { font-size:1.1rem; }
+    .sx-scene__core>span { font-size:.75rem; }
+    .sx-scene__world { top:17%; }
+    .sx-scene__layer--lower { transform:translateZ(9px); }
+    .sx-scene__layer--middle { transform:translateZ(25px); }
+    .sx-scene__layer--top { transform:translateZ(41px); }
+    .sx-scene figcaption { font-size:.85rem; }
+}
+@media (prefers-reduced-motion:reduce) { .sx-scene * { animation:none!important; transition:none!important; } }

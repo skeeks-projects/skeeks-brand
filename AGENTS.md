@@ -11,7 +11,10 @@ Shared brand layer of SkeekS product sites. Read README.md first.
   small AssetBundle registered by its widget or only on pages that use it. Do not
   create a global "brand.css/brand.js" that every page loads.
 - Add a component here only when at least two product sites use the same markup and
-  behavior. Site navigation, texts, pages, scenes and content styles stay in projects.
+  behavior. Site navigation, texts, page layouts and page-only styles stay in projects;
+  shared page blocks, tiles and the hero scene live here (README "Блоки страниц").
+- Block class names are a contract with CMS texts (description_full via REST): never
+  rename or drop one without migrating those texts.
 - `Products` is the single source of product names, links and accents. A product
   without a confirmed URL has no link; never invent URLs.
 - Reference look and behavior: skeeks-platform.ru (`common/themes/platform`).

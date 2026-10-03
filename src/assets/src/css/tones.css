@@ -1,0 +1,7 @@
+/* Accent tones of SkeekS pages. data-sx-tone on any element sets --sx-tone (color)
+   and --sx-tone-rgb (for glows: rgba(var(--sx-tone-rgb),.2)); children inherit them. */
+:where(:root) { --sx-tone:#a6de58; --sx-tone-rgb:166,222,88; }
+[data-sx-tone="lime"] { --sx-tone:#a6de58; --sx-tone-rgb:166,222,88; }
+[data-sx-tone="pink"] { --sx-tone:#f478a0; --sx-tone-rgb:244,120,160; }
+[data-sx-tone="gold"] { --sx-tone:#efd740; --sx-tone-rgb:239,215,64; }
+[data-sx-tone="cyan"] { --sx-tone:#64dcdb; --sx-tone-rgb:100,220,219; }

@@ -7,6 +7,14 @@
     --sx-header-spacer:var(--sx-header-height); --sx-header-spacer-mobile:var(--sx-header-height-mobile);
 }
 
+/* ---------- Anchors ----------
+   Same-page links (#id) glide to the target and stop below the fixed header. The offset
+   lives here once, so blocks do not add their own scroll-margin-top. :where keeps a
+   site's own html rule stronger. */
+:where(html) { scroll-behavior:smooth; scroll-padding-top:calc(var(--sx-header-height) + 1.25rem); }
+@media (max-width:991px) { :where(html) { scroll-padding-top:calc(var(--sx-header-height-mobile) + 1rem); } }
+@media (prefers-reduced-motion:reduce) { :where(html) { scroll-behavior:auto; } }
+
 /* ---------- Header ---------- */
 .sx-site-header { position:fixed !important; top:0; right:0; left:0; z-index:501; padding:0; background:rgba(10,14,20,.96); box-shadow:none !important; transform:translateY(0); transition:transform .28s ease,background .28s ease; will-change:transform; }
 .sx-site-header.is-hidden { transform:translateY(-110%); }

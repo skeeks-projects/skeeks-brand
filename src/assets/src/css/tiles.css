@@ -1,0 +1,22 @@
+/* Tiles: lit panel cards with an icon, title, text, optional points and a corner arrow.
+   The whole tile is one link. Color comes from data-sx-tone on the tile or a parent.
+   <div class="sx-tiles"><a class="sx-tile" href="…" data-sx-tone="pink">
+     <span class="sx-tile__icon"><i class="fas fa-search"></i></span>
+     <span class="sx-tile__body"><strong>…</strong><span class="sx-tile__text">…</span>
+       <span class="sx-tile__points"><i>…</i></span></span>
+     <span class="sx-tile__arrow" aria-hidden="true">↗</span></a></div>
+   Column width: --sx-tile-min (22rem). */
+.sx-tiles { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,var(--sx-tile-min,22rem)),1fr)); gap:1.2rem; }
+.sx-tile { position:relative; display:flex; gap:1.1rem; align-items:flex-start; padding:1.6rem 2.6rem 1.6rem 1.6rem; border:1px solid rgba(255,255,255,.08); border-radius:18px; color:#fff!important; background:linear-gradient(155deg,rgba(var(--sx-tone-rgb),.08),rgba(255,255,255,.01) 55%); overflow:hidden; transition:border-color .25s,transform .25s,box-shadow .25s; }
+.sx-tile:before { content:''; position:absolute; width:12rem; height:12rem; right:-5rem; top:-5rem; border-radius:50%; background:radial-gradient(circle,rgba(var(--sx-tone-rgb),.16),transparent 70%); pointer-events:none; }
+a.sx-tile:hover { text-decoration:none; border-color:rgba(var(--sx-tone-rgb),.5); transform:translateY(-3px); box-shadow:0 0 34px rgba(var(--sx-tone-rgb),.14); }
+.sx-tile__icon { display:grid; place-items:center; flex:0 0 auto; width:3.2rem; height:3.2rem; border-radius:11px; color:var(--sx-tone); font-size:1.25rem; background:rgba(var(--sx-tone-rgb),.1); border:1px solid rgba(var(--sx-tone-rgb),.22); }
+.sx-tile__body { position:relative; min-width:0; }
+.sx-tile strong { display:block; font-size:1.3rem; font-weight:800; line-height:1.3; }
+.sx-tile__text { display:block; margin-top:.45rem; color:rgba(255,255,255,.72); }
+.sx-tile__points { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.9rem; }
+.sx-tile__points i { font-style:normal; font-size:.8rem; padding:.2rem .6rem; border-radius:999px; border:1px solid rgba(var(--sx-tone-rgb),.35); color:#e6ecf4; }
+.sx-tile__arrow { position:absolute; top:1.3rem; right:1.4rem; color:var(--sx-tone); font-size:1.3rem; transition:transform .25s; }
+a.sx-tile:hover .sx-tile__arrow { transform:translate(3px,-3px); }
+@media (max-width:575px) { .sx-tile { padding:1.3rem 2.3rem 1.3rem 1.2rem; } }
+@media (prefers-reduced-motion:reduce) { .sx-tile,.sx-tile__arrow { transition:none; } a.sx-tile:hover { transform:none; } }
