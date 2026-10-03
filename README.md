@@ -157,7 +157,7 @@ echo ProductSwitcher::widget([
 | `sx-step-list` | Шаги 01, 02…: `<ol class="sx-step-list"><li><h3>…</h3><p>…</p></li></ol>` |
 | `sx-plans`, `sx-plan` (`--accent`, `__name`, `__price`, `__note`, `__list`) | Тарифы: карточки с ценой, примечанием, списком и кнопкой; ширина колонки — `--sx-plan-min` |
 | `sx-faq`, `sx-faq__aside`, `sx-ask`, `sx-faq-list` | Вопросы и ответы: слева заголовок и карточка «Не нашли ответ?», справа `<details>` |
-| `sx-tiles`, `sx-tile` (`__icon`, `__body`, `__text`, `__points`, `__arrow`) | Карточки-ссылки со свечением; ширина колонки — `--sx-tile-min` |
+| `sx-tiles`, `sx-tile` (`__icon`, `__media`, `__body`, `__text`, `__points`, `__arrow`) | Карточки со свечением; ширина колонки — `--sx-tile-min`, фиксированные колонки — `sx-tiles--cols` и `--sx-tile-cols`; `sx-tile--lg` — крупная иконка или логотип, `sx-tile--stack` — иконка над текстом (в теле можно `<h3>` и `<p>`) |
 
 Пример вопросов и ответов:
 
