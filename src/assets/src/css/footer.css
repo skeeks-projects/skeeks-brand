@@ -69,6 +69,7 @@ body .sx-legal-cookie .sx-trigger-allow-cookie:focus { color:#171217; filter:bri
 .sx-new-footer__start{position:relative;display:inline-flex;align-items:center;gap:1rem;padding:1.35rem 2.4rem;border-radius:999px;font-size:1.35rem;font-weight:900;color:#171217;white-space:nowrap;overflow:hidden;isolation:isolate;background:linear-gradient(120deg,#ee4d7d,#f38a6a 45%,#efd740);background-size:200% 100%;box-shadow:0 1.2rem 3rem rgba(238,77,125,.35),0 0 0 0 rgba(239,215,64,.5);animation:sx-start-glow 3.2s ease-in-out infinite,sx-start-shift 6s ease-in-out infinite alternate;transition:transform .25s}
 .sx-new-footer__start:before{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;z-index:-1;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:sx-start-shine 3.2s ease-in-out infinite}
 .sx-new-footer__start i{transition:transform .25s}
+.sx-new-footer__start,.sx-new-footer__start:hover,.sx-new-footer__start:focus{text-decoration:none}
 .sx-new-footer__start:hover{color:#171217;transform:translateY(-2px) scale(1.02)}.sx-new-footer__start:hover i{transform:translateX(.35rem)}
 .sx-new-footer__start:focus-visible{outline:3px solid #efd740;outline-offset:4px}
 @keyframes sx-start-shine{0%,55%{left:-60%}85%,100%{left:130%}}
