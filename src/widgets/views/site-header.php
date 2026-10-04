@@ -54,7 +54,7 @@ $ctaOptions = $cta ? array_merge(['class' => 'sx-site-header__cta'], $cta['optio
 <div class="sx-site-header-spacer" aria-hidden="true"></div>
 
 <div class="sx-menu-backdrop" data-sx-menu-close></div>
-<aside id="sx-full-menu" class="sx-full-menu" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Полное меню" inert>
+<aside id="sx-full-menu" class="sx-full-menu" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Полное меню"<?= ($accent = $widget->accentStyle()) ? ' style="'.Html::encode($accent).'"' : ''; ?> inert>
     <div class="sx-full-menu__head">
         <?= $widget->drawerBrand; ?>
         <button class="sx-full-menu__close" type="button" data-sx-menu-close aria-label="Закрыть меню"><i class="fas fa-times" aria-hidden="true"></i></button>

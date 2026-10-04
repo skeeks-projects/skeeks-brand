@@ -72,7 +72,7 @@
 .sx-product-brand .sx-product-brand__bulb { display:block; height:var(--sx-product-logo-height); width:auto; max-width:none; margin:0; flex-shrink:0; }
 .sx-product-brand__text { display:flex; flex-direction:column; gap:calc(var(--sx-product-logo-height) * .04); }
 .sx-product-brand__endorsement { display:flex; align-items:center; gap:calc(var(--sx-product-logo-height) * .16); font-size:calc(var(--sx-product-logo-height) * .34); font-weight:400; line-height:1; letter-spacing:-.025em; }
-.sx-product-brand__accent { display:block; width:calc(var(--sx-product-logo-height) * .32); height:calc(var(--sx-product-logo-height) * .055); border-radius:2px; background:var(--sx-gold); }
+.sx-product-brand__accent { display:block; width:calc(var(--sx-product-logo-height) * .32); height:calc(var(--sx-product-logo-height) * .055); border-radius:2px; background:var(--sx-product-accent,var(--sx-gold)); }
 .sx-product-brand__name { display:block; font-size:calc(var(--sx-product-logo-height) * .57); font-weight:800; line-height:1.05; letter-spacing:-.025em; }
 .sx-product-brand:hover { color:#fff; text-decoration:none; }
 .sx-full-menu__logo.sx-product-brand { --sx-product-logo-height:3.6rem; }

@@ -12,6 +12,7 @@ use skeeks\brand\assets\ShellAsset;
 use skeeks\brand\Products;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
+use yii\helpers\Html;
 
 /**
  * Shared SkeekS site header: menu button, product logo with the product switcher,
@@ -69,8 +70,19 @@ class SiteHeader extends Widget
         }
         $this->drawerBrand = $this->drawerBrand ?? $this->brand;
         $this->headerOptions = array_merge(['id' => 'js-header'], $this->headerOptions);
+        // The accent stroke of the product mark takes the product's own color (Products registry).
+        if ($accent = $this->accentStyle()) {
+            Html::addCssStyle($this->headerOptions, $accent);
+        }
         $class = trim('sx-site-header '.($this->headerOptions['class'] ?? ''));
         $this->headerOptions['class'] = $class;
+    }
+
+    /** `--sx-product-accent:#…` of the current product, or '' when the product has no accent (SkeekS). */
+    public function accentStyle(): string
+    {
+        $accent = Products::get($this->product)['accent'] ?? null;
+        return $accent ? '--sx-product-accent:'.$accent : '';
     }
 
     public function run()
