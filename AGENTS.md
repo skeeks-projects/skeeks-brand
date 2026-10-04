@@ -21,6 +21,7 @@ Shared brand layer of SkeekS product sites. Read README.md first.
 - The site shell (`SiteHeader` + `ShellAsset`) owns header, search, drawer and the product
   mark. Sites pass data and may override tokens in their own `:root`; package tokens are
   declared with `:where(:root)` so they never win. Do not copy shell CSS back into a site.
+- Scripted demonstrations: `DemoAsset` owns only the runner (on-screen switch of `[data-sx-live]`, `window.sxDemo.register`, cursor/wait helpers). Scene markup and scenarios stay in the sites; do not move a site's scenarios here.
 - The footer (`SiteFooter` + `FooterAsset`) also owns the cookie notice look; the notice markup belongs to skeeks/cms LegalComponent, so only CSS lives here.
 
 ## Assets

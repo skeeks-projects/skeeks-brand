@@ -15,6 +15,7 @@
 | `skeeks\brand\widgets\Scene` | CSS-3D сцена первого экрана | Сам регистрирует `SceneAsset` |
 | `BlocksAsset`, `TilesAsset`, `ToneAsset` | Блоки страниц и карточки в стиле платформы | Только на страницах с этими блоками, см. «Блоки страниц» |
 | `skeeks\brand\assets\RevealAsset` | Плавное появление `[data-sx-reveal]` | Только на страницах, где есть такие блоки |
+| `skeeks\brand\assets\DemoAsset` | Анимированные демонстрации: запуск только на экране, сценарии `window.sxDemo`, курсор | Зависимость бандла со сценариями сайта, см. «Демонстрации» |
 | `brand/favicons` | Favicon продуктов и генератор | См. `brand/favicons/README.md` |
 | `brand/logos` | Логотипы продуктов и генераторы | См. `brand/logos/README.md` |
 
@@ -125,6 +126,46 @@ echo ProductSwitcher::widget([
 Без JS, без IntersectionObserver и при `prefers-reduced-motion` всё видно сразу.
 Блоки, вставленные позже (кнопка «Показать ещё»), — `window.sxReveal(container)`
 или событие `sx:reveal` на контейнере. Заголовок первого экрана не помечать.
+
+## Демонстрации
+
+Анимированные сцены «как это работает» (перерисованные экраны, схемы процессов). Пакет даёт
+только общий механизм; разметка сцен и сами сценарии остаются в сайте.
+
+```php
+// бандл сайта со сценариями
+public $depends = [\skeeks\brand\assets\DemoAsset::class];
+```
+
+```html
+<section data-sx-live>                       <!-- анимации идут, пока секция на экране -->
+  <div data-sx-demo="order">                 <!-- имя сценария -->
+    <div data-sx-demo-frame>                 <!-- область курсора (по умолчанию сам корень) -->
+      <span data-demo="button">…</span>
+      <span class="sx-demo-cursor"><svg>…</svg></span>   <!-- необязательно -->
+    </div>
+  </div>
+</section>
+```
+
+```js
+window.sxDemo.register('order', async function (h) {
+    for (;;) {
+        await h.click(h.q('button'));   // курсор к элементу и нажатие
+        await h.wait(800);              // пауза идёт только на экране
+    }
+});
+```
+
+- `[data-sx-live]` получает `data-sx-running="true"`, пока секция видна, вкладка активна и нет
+  `prefers-reduced-motion`; CSS-циклы сайта завязываются на этот атрибут.
+- Сценарий стартует, когда есть и разметка, и регистрация (порядок не важен); корню
+  добавляется `is-demo`. Без JS и при reduced motion остаётся статичная разметка — её надо
+  делать законченной (финальное состояние сцены).
+- Помощники `h`: `q(name)`/`all(name)` — элементы `[data-demo]`; `wait(ms)` — пауза, которая
+  не идёт вне экрана; `move`/`click(el, dx, dy)` — курсор (без `.sx-demo-cursor` — ничего не
+  делают); `home()`; `type(el, text)`; `count(el, from, to, ms)`; `format(n)`.
+- Кнопок паузы не ставить: анимация останавливается сама вне экрана.
 
 ## Блоки страниц
 
